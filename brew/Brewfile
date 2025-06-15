@@ -1,7 +1,6 @@
 tap "databricks/tap"
 tap "felixkratz/formulae"
 tap "hashicorp/tap"
-tap "homebrew/bundle"
 tap "ngrok/ngrok"
 tap "nikitabobko/tap"
 tap "omrikiei/ktunnel"
