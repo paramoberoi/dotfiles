@@ -60,6 +60,6 @@ return {
 			require("telescope.builtin").lsp_implementations,
 			{ desc = "[C]ode Goto [I]mplementations" }
 		)
-		require("telescope.multigrep").setup()
+		require("utils.multigrep").setup()
 	end,
 }

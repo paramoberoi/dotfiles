@@ -68,6 +68,13 @@ vim.keymap.set(
     "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>",
     { desc = "[J]ava Extract [C]onstant" }
 )
+-- Set a Vim motion to <Space> + <Shift>J + m to extract the code under the cursor to a method
+vim.keymap.set(
+    "v",
+    "<leader>jm",
+    "<Cmd> lua require('jdtls').extract_method(true)<CR>",
+    { desc = "[J]ava Extract [M]ethod" }
+)
 -- Set a Vim motion to <Space> + <Shift>J + t to run the test method currently under the cursor
 vim.keymap.set(
     "n",
@@ -83,9 +90,17 @@ vim.keymap.set(
     { desc = "[J]ava [T]est Method" }
 )
 -- Set a Vim motion to <Space> + <Shift>J + <Shift>T to run an entire test suite (class)
-vim.keymap.set("n", "<leader>jT", "<Cmd> lua require('jdtls').test_class()<CR>", { desc = "[J]ava [T]est Class" })
+vim.keymap.set(
+    "n",
+    "<leader>jT",
+    "<Cmd> lua require('jdtls').test_class()<CR>",
+    { desc = "[J]ava [T]est Class" })
 -- Set a Vim motion to <Space> + <Shift>J + u to update the project configuration
-vim.keymap.set("n", "<leader>ju", "<Cmd> JdtUpdateConfig<CR>", { desc = "[J]ava [U]pdate Config" })
+vim.keymap.set(
+    "n",
+    "<leader>ju",
+    "<Cmd> JdtUpdateConfig<CR>",
+    { desc = "[J]ava [U]pdate Config" })
 
 -- Toggle virtual text
 vim.api.nvim_create_user_command("ToggleVirtualText", function()

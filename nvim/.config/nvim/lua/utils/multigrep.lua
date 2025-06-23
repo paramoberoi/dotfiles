@@ -2,6 +2,7 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config").values
+local path_utils = require("utils.path")
 
 local M = {}
 
@@ -51,7 +52,10 @@ end
 M.setup = function()
     vim.keymap.set("n", "<leader>fg", live_multigrep)
     vim.keymap.set("n", "<leader>fc", function()
-        live_multigrep({ cwd = os.getenv("HOME") .. "/Documents/Code" })
+        local root = path_utils.find_root()
+        if root then
+            live_multigrep({ cwd = root })
+        end
     end)
 end
 

@@ -1,0 +1,20 @@
+[include]
+    path = ~/.gitconfig-work
+[core]
+	editor = nvim
+[diff]
+	tool = vimdiff
+[alias]
+	st = status
+	cm = commit
+	co = checkout
+	sw = switch
+	br = branch
+        fa = fetch --all
+	lp = log --pretty=format:'%C(yellow)%h%C(blue)%d%Creset - %C(green)%an%Creset, %ar : %s'
+[merge]
+	tool = vimdiff
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = false

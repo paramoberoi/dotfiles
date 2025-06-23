@@ -175,10 +175,10 @@ return {
                         -- Create a keymap for vim.lsp.buf.rename()
                         vim.keymap.set("n", "grn", vim.lsp.buf.rename, {})
                     end
-                    if client.supports_method("textDocument/formatting") then
+                    -- if client.supports_method("textDocument/formatting") then
                         -- set up a vim motion for <Space> + c + f to automatically format our code based on which langauge server is active
                         vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "[C]ode [F]ormat" })
-                    end
+                    -- end
                     if client.supports_method("textDocument/rangeFormatting") then
                         vim.keymap.set("v", "<leader>cf", function()
                             vim.lsp.buf.format({

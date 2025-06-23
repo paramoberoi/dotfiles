@@ -1,7 +1,10 @@
--- Setup our JDTLS server any time we open up a java file
--- vim.cmd [[
---     augroup jdtls_lsp
---         autocmd!
---         autocmd FileType java lua require'config.jdtls'.setup_jdtls()
---     augroup end
--- ]]
+local path_utils = require("utils.path")
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
+    callback = function()
+        local root = path_utils.find_root()
+        if root then
+            vim.g.augment_workspace_folders = { root }
+        end
+    end,
+})
