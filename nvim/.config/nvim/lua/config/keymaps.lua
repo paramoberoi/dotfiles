@@ -17,6 +17,9 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search high
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left in visual mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right in visual mode" })
 
+-- ZenMode keymap
+vim.keymap.set("n", "<leader>zm", ":ZenMode<CR>", { desc = "Toggle Zen Mode" })
+
 -- Augment keymaps
 vim.keymap.set("n", "<leader>ac", ":Augment chat<CR>", { desc = "[A]ugment [C]hat" })
 vim.keymap.set("v", "<leader>ac", ":Augment chat<CR>", { desc = "[A]ugment [C]hat" })
@@ -119,3 +122,4 @@ vim.keymap.set("n", "<leader>gP", "<cmd>Neogit push<CR>", { desc = "Neogit Push"
 vim.keymap.set("n", "<leader>gh", "<cmd>Neogit help<CR>", { desc = "Neogit Help" })
 vim.keymap.set("n", "<leader>gd", "<cmd>Neogit diff<CR>", { desc = "Neogit Diff" })
 vim.keymap.set("n", "<leader>gf", "<cmd>Neogit fetch<CR>", { desc = "Neogit Fetch" })
+vim.keymap.set("n", "<leader>gb", "<cmd>Neogit Branch<CR>", { desc = "Neogit Branch" })
