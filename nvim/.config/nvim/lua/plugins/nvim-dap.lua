@@ -67,6 +67,40 @@ return {
 			},
 		})
 
+		-- Setup virtual text for dap
+		dapvtext.setup()
+
+		-- Java debug configurations
+		dap.configurations.java = {
+			{
+				type = 'java',
+				request = 'launch',
+				name = "Launch current file",
+				mainClass = function()
+					-- Get current file's class name
+					local current_file = vim.fn.expand('%:t:r')
+					return current_file
+				end,
+				projectName = function()
+					return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+				end,
+			},
+			{
+				type = 'java',
+				request = 'launch',
+				name = "Launch with arguments",
+				mainClass = function()
+					return vim.fn.input('Main class: ', vim.fn.expand('%:t:r'))
+				end,
+				args = function()
+					local args_str = vim.fn.input('Program arguments: ')
+					return vim.split(args_str, ' ')
+				end,
+				projectName = function()
+					return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+				end,
+			},
+		}
 		-- setup an event listener for when the debugger is launched
 		dap.listeners.before.launch.dapui_config = function()
 			-- when the debugger is launched open up the debug ui

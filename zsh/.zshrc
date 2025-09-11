@@ -190,3 +190,17 @@ if [ -f '/Users/poberoi/Documents/DDE/google-cloud-sdk/path.zsh.inc' ]; then . '
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/poberoi/Documents/DDE/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/poberoi/Documents/DDE/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+
+# bun completions
+[ -s "/Users/poberoi/.bun/_bun" ] && source "/Users/poberoi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

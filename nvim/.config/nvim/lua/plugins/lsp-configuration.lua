@@ -103,9 +103,19 @@ return {
 
             for _, server in ipairs(installed_servers) do
                 if server ~= "jdtls" then
-                    vim.lsp.config(server, {
-                        capabilities = capabilities,
-                    })
+                    local server_opts = { capabilities = capabilities }
+                    if server == "pylsp" then
+                        server_opts.settings = {
+                            pylsp = {
+                                plugins = {
+                                    pycodestyle = {
+                                        maxLineLength = 120,
+                                    },
+                                },
+                            },
+                        }
+                    end
+                    vim.lsp.config(server, server_opts)
                     vim.lsp.enable(server)
                 end
             end

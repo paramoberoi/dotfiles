@@ -1,0 +1,102 @@
+DEBUGEE CONFIGURATION                                *dap-configuration*
+
+
+In addition to launching (possibly) and connecting to a debug adapter, Neovim
+needs to instruct the debug adapter itself how to launch and connect to the
+debugee. The debugee is the application you want to debug.
+
+This is controlled via a `Configuration`, which has 3 required fields:
+
+>
+    type: string        -- Which debug adapter to use.
+    request: string     -- Either `attach` or `launch`. Indicates whether the
+                        -- debug adapter should launch a debugee or attach to
+                        -- one that is already running.
+    name: string        -- A user-readable name for the configuration.
+<
+
+In addition, a `Configuration` accepts an arbitrary number of further options
+which are debug-adapter-specific.
+
+Configurations are set in the `dap.configurations` table. The keys are
+filetypes. If you run |dap.continue()| it will look up configurations under the
+current filetype.
+
+For example:
+
+>lua
+    local dap = require('dap')
+    dap.configurations.python = {
+      {
+        type = 'python';
+        request = 'launch';
+        name = "Launch file";
+        program = "${file}";
+        pythonPath = function()
+          return '/usr/bin/python'
+        end;
+      },
+    }
+<
+
+Things to note:
+
+- Values for properties other than the 3 required properties `type`,
+  `request`, and `name` can be functions. If a value is given as a function,
+  the function will be evaluated to get the property value when the
+  configuration is used.
+
+  To support asynchronous operations, the function can return a `thread`
+  (created via `coroutine.create`) following two constraints:
+
+    - The coroutine/thread must be in a suspended state
+    - The coroutine/thread must resume the nvim-dap `run` coroutine with the
+      result
+
+  An example:
+
+>lua
+    foo = function()
+      return coroutine.create(function(dap_run_co)
+        local items = {'one', 'two'}
+        vim.ui.select(items, { label = 'foo> '}, function(choice)
+          coroutine.resume(dap_run_co, choice)
+        end)
+      end)
+    end,
+<
+
+- Functions for top level properties can return the `dap.ABORT` constant to
+  signal that you want to abort starting a debug session. An example:
+
+>lua
+    program = function()
+      local path = vim.fn.input({
+        prompt = 'Path to executable: ',
+        default = vim.fn.getcwd() .. '/',
+        completion = 'file'
+      })
+      return (path and path ~= "") and path or dap.ABORT
+    end
+<
+
+- The configuration can have an optional metatable with `__call`
+  implementation. The function will get called when the configuration is used
+  and it must return a new configuration table. This can be used to
+  dynamically add multiple properties at once.
+
+- Some variables are supported:
+  - `${file}`: Active filename
+  - `${fileBasename}`: The current file's basename
+  - `${fileBasenameNoExtension}`: The current file's basename without extension
+  - `${fileDirname}`: The current file's dirname
+  - `${fileExtname}`: The current file's extension
+  - `${relativeFile}`: The current file relative to |getcwd()|
+  - `${relativeFileDirname}`: The current file's dirname relative to |getcwd()|
+  - `${workspaceFolder}`: The current working directory of Neovim
+  - `${workspaceFolderBasename}`: The name of the folder opened in Neovim
+  - `${command:pickProcess}`: Open dialog to pick process using |vim.ui.select|
+  - `${command:pickFile}`: Open dialog to pick file using |vim.ui.select|
+  - `${env:Name}`: Environment variable named `Name`, for example: `${env:HOME}`.
+
+
