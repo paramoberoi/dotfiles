@@ -14,5 +14,11 @@ return {
       { "BufNewFile", "BufRead" },
       { group = hocon_group, pattern = "*.conf", command = "set ft=hocon" }
     )
+    
+    local jsonl_group = vim.api.nvim_create_augroup("jsonl", { clear = true })
+    vim.api.nvim_create_autocmd(
+      { "BufNewFile", "BufRead" },
+      { group = jsonl_group, pattern = "*.jsonl", command = "set ft=json" }
+    )
   end,
 }

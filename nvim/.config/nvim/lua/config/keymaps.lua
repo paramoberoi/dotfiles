@@ -122,4 +122,13 @@ vim.keymap.set("n", "<leader>gP", "<cmd>Neogit push<CR>", { desc = "Neogit Push"
 vim.keymap.set("n", "<leader>gh", "<cmd>Neogit help<CR>", { desc = "Neogit Help" })
 vim.keymap.set("n", "<leader>gd", "<cmd>Neogit diff<CR>", { desc = "Neogit Diff" })
 vim.keymap.set("n", "<leader>gf", "<cmd>Neogit fetch<CR>", { desc = "Neogit Fetch" })
-vim.keymap.set("n", "<leader>gb", "<cmd>Neogit Branch<CR>", { desc = "Neogit Branch" })
+-- vim.keymap.set("n", "<leader>gb", "<cmd>Neogit Branch<CR>", { desc = "Neogit Branch" })
+
+-- GitSigns
+vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
+
+-- curlie
+-- Execute visual selection in bash and view results
+vim.keymap.set("v", "<leader>x", ":w !bash<CR>:split headers.txt<CR>:vsplit response-body.json<CR>", { desc = "Execute selection in bash and view output files" })
+-- Close specific buffers regardless of which window you're in
+vim.keymap.set("n", "<leader>xc", ":bd headers.txt response-body.json<CR>", { desc = "Close response files" })
