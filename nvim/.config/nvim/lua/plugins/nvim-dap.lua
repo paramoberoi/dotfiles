@@ -1,71 +1,12 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		-- ui plugins to make debugging simplier
-		"rcarriga/nvim-dap-ui",
-		"nvim-neotest/nvim-nio",
 		"theHamsta/nvim-dap-virtual-text",
 	},
 	config = function()
 		-- gain access to the dap plugin and its functions
 		local dap = require("dap")
-		-- gain access to the dap ui plugin and its functions
-		local dapui = require("dapui")
 		local dapvtext = require("nvim-dap-virtual-text")
-
-		-- Setup the dap ui with default configuration
-		dapui.setup({
-			layouts = {
-				{
-					elements = {
-						{
-							id = "scopes",
-							size = 0.25,
-						},
-						{
-							id = "breakpoints",
-							size = 0.25,
-						},
-						{
-							id = "stacks",
-							size = 0.25,
-						},
-						{
-							id = "watches",
-							size = 0.25,
-						},
-					},
-					position = "left",
-					size = 40,
-				},
-				{
-					elements = {
-						{
-							id = "repl",
-							size = 0.5,
-						},
-						{
-							id = "console",
-							size = 0.5,
-						},
-					},
-					position = "bottom",
-					size = 10,
-				},
-			},
-			mappings = {
-				edit = "e",
-				expand = { "<CR>", "<2-LeftMouse>" },
-				open = "o",
-				remove = "d",
-				repl = "r",
-				toggle = "t",
-			},
-			render = {
-				indent = 1,
-				max_value_lines = 100,
-			},
-		})
 
 		-- Setup virtual text for dap
 		dapvtext.setup()
@@ -101,14 +42,12 @@ return {
 				end,
 			},
 		}
-		-- setup an event listener for when the debugger is launched
-		dap.listeners.before.launch.dapui_config = function()
-			-- when the debugger is launched open up the debug ui
-			dapui.open()
-		end
-
-		-- Setup virtual text for dap
-		dapvtext.setup()
+		-- Toggle the dap-view UI (replaces nvim-dap-ui)
+		vim.keymap.set("n", "<leader>dv", function()
+			pcall(function()
+				require("dap-view").toggle(true)
+			end)
+		end, { desc = "[D]ebug [V]iew toggle" })
 
 		-- Toggle a basic breakpoint at current line
 		vim.keymap.set("n", "<leader>bb", dap.toggle_breakpoint, { desc = "[B]reakpoint [B]asic" })
@@ -152,13 +91,17 @@ return {
 		-- Disconnect debugger and close UI
 		vim.keymap.set("n", "<leader>dd", function()
 			dap.disconnect()
-			dapui.close()
+			pcall(function()
+				require("dap-view").close(true)
+			end)
 		end, { desc = "[D]ebug [D]isconnect" })
 
 		-- Terminate debug session and close UI
 		vim.keymap.set("n", "<leader>dt", function()
 			dap.terminate()
-			dapui.close()
+			pcall(function()
+				require("dap-view").close(true)
+			end)
 		end, { desc = "[D]ebug [T]erminate" })
 
 		-- Show variable values on hover

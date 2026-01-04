@@ -1,0 +1,4 @@
+% my-ip
+
+# ip
+curl checkip.amazonaws.com

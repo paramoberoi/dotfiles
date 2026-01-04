@@ -125,7 +125,8 @@ vim.keymap.set("n", "<leader>gf", "<cmd>Neogit fetch<CR>", { desc = "Neogit Fetc
 -- vim.keymap.set("n", "<leader>gb", "<cmd>Neogit Branch<CR>", { desc = "Neogit Branch" })
 
 -- GitSigns
-vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
+vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>', { desc = "Toggle current line blame" })
+vim.keymap.set('n', '<leader>gB', '<cmd>Gitsigns blame<CR>', { desc = "Blame all lines" })
 
 -- curlie
 -- Execute visual selection in bash and view results

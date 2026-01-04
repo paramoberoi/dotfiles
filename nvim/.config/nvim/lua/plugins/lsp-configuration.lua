@@ -111,6 +111,11 @@ return {
                                     pycodestyle = {
                                         maxLineLength = 120,
                                     },
+                                    pyflakes = { enabled = false },
+                                    flake8 = {
+                                        enabled = true,
+                                        maxLineLength = 120,
+                                    },
                                 },
                             },
                         }

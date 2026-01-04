@@ -2,7 +2,10 @@
 bindkey -v
 export KEYTIMEOUT=1
 
-# Starship prompt
+# Initialize Homebrew environment (adds to PATH, MANPATH, etc.)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Starship prompt 
 eval "$(starship init zsh)"
 
 # Make Neovim the default editor
@@ -23,15 +26,14 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # Aliases
 alias v="nvim"
 alias c="clear"
+alias ls="ls --color=auto"
+alias cheat='(cd "$(navi info cheats-path)/personal" && v)'
 
 # zsh functions directory to make poetry completions work
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
-export PATH="/Users/poberoi/.local/bin:$PATH"
-
-# Add Homebrew to PATH
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Add pyenv to PATH
 export PYENV_ROOT="$HOME/.pyenv"
@@ -50,8 +52,12 @@ export GOPRIVATE=github.intuit.com
 source <(fzf --zsh)
 
 # fzf-tab
-autoload -U compinit; compinit
 source ~/.config/fzf-tab/fzf-tab.plugin.zsh
+
+# navi (Ctrl+G)
+if command -v navi >/dev/null 2>&1; then
+  eval "$(navi widget zsh)"
+fi
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -81,19 +87,26 @@ if [ -f '/Users/poberoi/Documents/DDE/google-cloud-sdk/path.zsh.inc' ]; then . '
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/poberoi/Documents/DDE/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/poberoi/Documents/DDE/google-cloud-sdk/completion.zsh.inc'; fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
 # bun completions
 [ -s "/Users/poberoi/.bun/_bun" ] && source "/Users/poberoi/.bun/_bun"
 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Partial-accept autosuggestions word-by-word in vi insert mode.
+# Meta-f (Esc f) runs forward-word, which zsh-autosuggestions uses for partial accept.
+bindkey -M viins $'\ef' forward-word
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
+# direnv
+eval "$(direnv hook zsh)"
 
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# zsh-syntax-highlighting
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

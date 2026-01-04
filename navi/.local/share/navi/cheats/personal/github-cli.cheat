@@ -1,0 +1,7 @@
+% github-cli
+
+# gh login
+gh auth login --hostname github.intuit.com --git-protocol ssh --web --skip-ssh-key && gh ssh-key add /Users/poberoi/.ssh/id_rsa.pub --title "id_rsa.pub"
+
+# gh open
+gh browse --branch "$(git branch --show-current)"

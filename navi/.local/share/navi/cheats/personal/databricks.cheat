@@ -1,0 +1,11 @@
+% databricks
+
+# dbk login
+databricks auth login --host <host>
+
+$ host: echo -e "https://intuit-e2-739275435815-exploration-prd.cloud.databricks.com/\nhttps://intuit-e2-442042550220-exploration-e2e.cloud.databricks.com/\nhttps://intuit-e2-570264151593-prd.cloud.databricks.com/\nhttps://intuit-e2-673736607118-e2e.cloud.databricks.com/"
+
+# dbk odin
+databricks fs cat dbfs://app/odin/hiveudf/conf/odin.properties -p <profile> | bat
+
+$ profile: databricks auth profiles | awk 'NR>1 && $NF=="YES" {print $1}'

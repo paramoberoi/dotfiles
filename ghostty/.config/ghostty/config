@@ -2,3 +2,7 @@ background = 000000
 mouse-hide-while-typing = true
 theme = tokyonight
 font-size = 
+
+# zsh-autosuggestions: partial accept one word at a time on Option+Right.
+# Sends Esc f (Meta-f) which is bound to forward-word in zsh vi insert mode.
+keybind = opt+right=esc:f
