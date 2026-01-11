@@ -1,114 +1,82 @@
-tap "databricks/tap"
 tap "felixkratz/formulae"
-tap "hashicorp/tap"
+tap "homebrew/bundle"
 tap "ngrok/ngrok"
 tap "nikitabobko/tap"
 tap "omrikiei/ktunnel"
-# General-purpose data compression with high compression ratio
+tap "pls-rs/pls"
 brew "xz"
-# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Arbitrary precision numeric processing language
-brew "bc"
-# Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-# GNU File, Shell, and Text utilities
+brew "bat"
+brew "bc"
+brew "btop"
+brew "clipboard"
 brew "coreutils"
-# Secure runtime for JavaScript and TypeScript
+brew "curl"
+brew "curlie"
 brew "deno"
-# Simple, fast and user-friendly alternative to find
+brew "direnv"
 brew "fd"
-# GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU awk utility
 brew "gawk"
-# GitHub command-line tool
 brew "gh"
-# Open-source GitLab command-line tool
 brew "glab"
-# GNU implementation of the famous stream editor
+brew "glow"
 brew "gnu-sed"
-# Tools and libraries to manipulate images in many formats
+brew "hurl"
 brew "imagemagick"
-# Lightweight and flexible command-line JSON processor
 brew "jq"
-# Platform built on V8 to build network applications
 brew "node"
-# Interactive environments for writing and running code
 brew "jupyterlab"
-# Kubernetes command-line interface
 brew "kubernetes-cli"
-# CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
-# Java-based project management
 brew "maven"
-# Ambitious Vim-fork focused on extensibility and agility
+brew "navi"
 brew "neovim"
-# Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
-# Modern shell for the GitHub era
 brew "nushell"
-# Manage multiple Node.js versions
 brew "nvm"
-# Execute binaries from Python packages in isolated environments
 brew "pipx"
-# Tool for managing OCI containers and pods
 brew "podman"
-# PDF rendering library (based on the xpdf-3.0 code base)
+brew "podman-compose"
 brew "poppler"
-# Python version management
 brew "pyenv"
-# Generic machine emulator and virtualizer
+brew "python@3.12"
 brew "qemu"
-# Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# 7-Zip is a file archiver with a high compression ratio
+brew "sesh"
 brew "sevenzip"
-# Cross-shell prompt for astronauts
 brew "starship"
-# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
-# Tool Command Language
 brew "tcl-tk"
-# Terminal multiplexer
+brew "tealdeer"
 brew "tmux"
-# ODBC 3 connectivity for UNIX
 brew "unixodbc"
-# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Internet file retriever
 brew "wget"
-# JavaScript package manager
+brew "xmlstarlet"
 brew "yarn"
-# Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
-# General-purpose lossless data-compression library
+brew "yq"
 brew "zlib"
-# Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Command-line interface for the Databricks platform
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 brew "databricks/tap/databricks"
-# A window border system for macOS
 brew "felixkratz/formulae/borders"
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar"
-# Terraform
 brew "hashicorp/tap/terraform"
-# Network tunneling tool for kubernetes.
+brew "intuit/eiamcli/eiamcli"
+brew "intuit/idps/stash"
 brew "omrikiei/ktunnel/ktunnel"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
+brew "pls-rs/pls/pls"
+cask "claude-code"
 cask "font-jetbrains-mono-nerd-font"
-cask "font-monaspace-nerd-font"
+cask "font-monaspice-nerd-font"
 cask "font-noto-sans-symbols-2"
 cask "font-symbols-only-nerd-font"
-# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# Collaboration platform for API development
 cask "postman"
+cask "raycast"
