@@ -25,20 +25,24 @@ return {
         require("telescope").load_extension("fzf")
 
         local builtin = require("telescope.builtin")
+        local path_utils = require("utils.path")
         vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-        vim.keymap.set("n", "<leader>fe", builtin.oldfiles, {})
+        vim.keymap.set("n", "<leader>fe", function()
+            local root = path_utils.find_root()
+            if root then
+                builtin.oldfiles({ cwd = root, cwd_only = true })
+            end
+        end, {})
         vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
         vim.keymap.set("n", "<leader>fn", function()
             builtin.find_files({
                 cwd = vim.fn.stdpath("config"),
             })
         end, {})
-        local path_utils = require("utils.path")
         vim.keymap.set("n", "<leader>ff", function()
             local root = path_utils.find_root()
             if root then
-                print("root: " .. root)
                 builtin.find_files({ cwd = root })
             end
         end)

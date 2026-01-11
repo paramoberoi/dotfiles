@@ -8,7 +8,7 @@ vim.keymap.set("n", "<Leader>p", '"+p')
 -- vim.keymap.set('i', '<C-]>', '<Plug>(copilot-accept-word)')
 
 -- Save file
-vim.keymap.set({ "n", "i" }, "<C-s>", "<ESC>:w<CR>")
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Esc><Cmd>w<CR>", { desc = "Save file" })
 
 -- Remove search highlights after searching
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlights" })
@@ -133,3 +133,9 @@ vim.keymap.set('n', '<leader>gB', '<cmd>Gitsigns blame<CR>', { desc = "Blame all
 vim.keymap.set("v", "<leader>x", ":w !bash<CR>:split headers.txt<CR>:vsplit response-body.json<CR>", { desc = "Execute selection in bash and view output files" })
 -- Close specific buffers regardless of which window you're in
 vim.keymap.set("n", "<leader>xc", ":bd headers.txt response-body.json<CR>", { desc = "Close response files" })
+
+-- Obsidian.nvim
+-- These trigger lazy-loading via the `cmd = { ... }` config in your obsidian.nvim plugin spec.
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "[O]bsidian [N]ew note" })
+vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "[O]bsidian [Q]uick switch" })
+vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "[O]bsidian [S]earch" })

@@ -4,6 +4,9 @@ return {
   config = function()
     local config = require("nvim-treesitter.configs")
     config.setup({
+      -- obsidian.nvim recommends ensuring both parsers are installed for best highlighting:
+      -- https://github.com/epwalsh/obsidian.nvim
+      ensure_installed = { "markdown", "markdown_inline" },
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },

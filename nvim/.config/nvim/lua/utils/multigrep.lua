@@ -50,8 +50,7 @@ local live_multigrep = function(opts)
 end
 
 M.setup = function()
-    vim.keymap.set("n", "<leader>fg", live_multigrep)
-    vim.keymap.set("n", "<leader>fc", function()
+    vim.keymap.set("n", "<leader>fg", function()
         local root = path_utils.find_root()
         if root then
             live_multigrep({ cwd = root })

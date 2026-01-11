@@ -33,6 +33,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- obsidian.nvim: additional syntax/UI features require conceallevel=1 or 2 for markdown buffers.
+-- Ref: https://github.com/epwalsh/obsidian.nvim
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("markdown_conceal", { clear = true }),
+	pattern = "markdown",
+	desc = "Enable conceal for markdown (obsidian.nvim UI features)",
+	callback = function()
+		vim.opt_local.conceallevel = 1
+	end,
+})
+
 -- ide like highlight when stopping cursor
 vim.api.nvim_create_autocmd("CursorMoved", {
 	group = vim.api.nvim_create_augroup("LspReferenceHighlight", { clear = true }),
